@@ -5,7 +5,8 @@
 
 ### Задача:
 ```ini
-Написать exporter(https://prometheus.io/docs/instrumenting/writing_exporters/) на golang, который парсит "/var/log/auth.log (Ubuntu) | /var/log/secure (Centos)" 
+Написать exporter(https://prometheus.io/docs/instrumenting/writing_exporters/) на golang, 
+который парсит "/var/log/auth.log (Ubuntu) | /var/log/secure (Centos)" 
 
 Группировка типов событий, количество событий каждого типа по пользователям. 
 
