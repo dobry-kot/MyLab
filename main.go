@@ -42,6 +42,7 @@ func myParce(line string) {
 		regexPamUnix          = regexAll + `(.*\((.*):(.*)\)):\s(.*\sfor\suser\s([^\s]*)).*`
 		regexAccess           = regexAll + `(.*password\sfor\s([^\s]*)\sfrom\s([0-9.]*)\sport\s([0-9]*).*)`
 		regexAuth             = regexAll + `.*\(((.*):(.*))\):.*user=([^\s]*)`
+		regexOther			 = 	regexAll + `.*for\suser\s\s([^\s]*)).*`
 		regexPidEvent         = `([a-zA-Z-_0-9]*)\[([0-9]*)\].*`
 
 		pamUnix    []string
@@ -64,7 +65,13 @@ func myParce(line string) {
 				auth := reg(regexAuth, logLine)
 
 				if auth == nil {
-					fmt.Println(logLine)
+					other := reg(regexOther, logLine)
+					if other == nil {
+						fmt.Println(logLine)
+					} else {
+						GroupEvent = auth[3]
+						Username = auth[4]
+					}
 
 				} else {
 					GroupEvent = auth[3]
